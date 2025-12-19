@@ -7,6 +7,12 @@ from chatwatcher import watch_loop
 
 CSV_FILE = "diffs.csv"
 
+# ChatVote
+# STREAM_ID = 'OxzHQ546YQY'
+# ChatVoteCombo
+# STREAM_ID = 'hTwVzwT4Yno'
+# IdleChatVote
+STREAM_ID = '-fesy2kdDxo'
 
 def read_csv_as_columns(filename: str) -> Tuple[List[str], List[List[str]]]:
     """
@@ -77,7 +83,7 @@ def main():
     header, columns = read_csv_as_columns(CSV_FILE)
     state = {}
 
-    for item in watch_loop("-fesy2kdDxo"):
+    for item in watch_loop(STREAM_ID):
         username = item.author.name
         timestamp = item.timestamp / 1000.0  # ms -> seconds
 

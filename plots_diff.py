@@ -21,10 +21,12 @@ from pathlib import Path
 import numpy as np
 import matplotlib.pyplot as plt
 
+from diff import STREAM_ID
+
 # -------- Parameters --------
 CSV_FILE = "diffs.csv"         # Path to diffs CSV
 OUTDIR = "plots"               # Output directory for PNGs
-MIN_COUNT = 20                 # Minimum samples per user to plot
+MIN_COUNT = 1                 # Minimum samples per user to plot
 NO_COMBINED = False            # If True, don't generate combined plot
 SHOW_PLOT = False              # If True, call plt.show() after saving figures
 
@@ -32,9 +34,17 @@ FULL_MIN = 0.0                 # Left edge for full plot
 FULL_MAX = 20.0                # Right edge for full plot
 FULL_MAX_BINS = 40             # Max bins for full plot
 
-ZOOM_MIN = 3.0                 # Left edge for zoom plot
-ZOOM_MAX = 7.0                 # Right edge for zoom plot
 ZOOM_BINS = 40                 # Max bins for zoom plot
+# zoom values. this varies depending on the stream.
+if STREAM_ID == 'OxzHQ546YQY':  # chatvote
+    ZOOM_MIN = 6.0
+    ZOOM_MAX = 9.0
+elif STREAM_ID == '-fesy2kdDxo': # chatvotecombo
+    ZOOM_MIN = 10
+    ZOOM_MAX = 15
+else: # chatvotecombo / unknown
+    ZOOM_MIN = 3.0
+    ZOOM_MAX = 7.0
 
 CHAT_COOLDOWN = 3.0            # X value for vertical line in full plot
 CHAT_COOLDOWN_LABEL = "Chat Cooldown"
